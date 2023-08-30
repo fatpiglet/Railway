@@ -1,0 +1,3 @@
+CREATE DATABASE railway_db;
+
+CREATE TABLE users(Username VARCHAR(255), Password VARCHAR(255), Phone_No VARCHAR(50));
