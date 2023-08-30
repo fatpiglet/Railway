@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pickle
+from Tests.user import User
 from tkt_bk import TICKET_BOOK
 import qrcode
 from random import *
