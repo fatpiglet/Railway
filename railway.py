@@ -12,3 +12,4 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 print("========================== WELCOME TO IRCTC ==========================")
+print()
