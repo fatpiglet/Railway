@@ -65,7 +65,7 @@ def register():
 # forgot password function
 def forgot_password():
     username = input("Enter Your Username  : ")
-    phone_no = input("Enter Your Phone No. :")
+    phone_no = input("Enter Your Phone No. : ")
     cursor.execute("SELECT * FROM users WHERE Username = %s AND Phone_No = %s", (username, phone_no))
     user = cursor.fetchone()
     cursor.execute("DELETE FROM users WHERE Username = %s", (username,))
