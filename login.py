@@ -70,6 +70,7 @@ def register(db, cursor):
         if registered(phone_no) is False:
             pass
 
+
 # forgot password function
 def forgot_password(db, cursor):
     def changed():
