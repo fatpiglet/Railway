@@ -1,4 +1,4 @@
-import mysql.connector
+"""import mysql.connector
 
 db = mysql.connector.connect(
     host="localhost",
@@ -7,10 +7,12 @@ db = mysql.connector.connect(
     database="railway_db"
 )
 cursor = db.cursor(buffered=True)
+"""
 
 
 # main login page
 def login_pg():
+    print()
     print("+---SELECT THE DESIRED OPTION---+")
     print("|            1.Login            |")
     print("|       2.Forgot Password       |")
@@ -21,7 +23,7 @@ def login_pg():
 
 
 # login function
-def login():
+def login(db, cursor):
     username = input("Enter Your Username : ")
     pass_word = input("Enter Your Password : ")
     cursor.execute("SELECT * FROM users WHERE Username = %s AND Password = %s", (username, pass_word))
@@ -30,11 +32,11 @@ def login():
         print("=============== SUCCESSFULLY LOGGED IN ===============")
     else:
         print("Invalid credentials. Please try again.")
-        login()
+        login(db, cursor)
 
 
 # password function
-def password(user, phno):
+def password(user, phno, db, cursor):
     ps_wd = input("Enter Password       : ")
     confirm_pass_word = input("Enter Password Again : ")
     if ps_wd == confirm_pass_word:
@@ -46,40 +48,48 @@ def password(user, phno):
 
 
 # register account function
-def register():
+def register(db, cursor):
+    def registered(ph_no):
+        if password(username, ph_no, db, cursor) is False:
+            print("Passwords do not match. Try again")
+            registered(ph_no)
+            return False
+        else:
+            print("================ ACCOUNT SUCCESSFULLY REGISTERED =================")
+            return True
+
     username = input("Enter Your Username  : ")
+
     cursor.execute("SELECT * FROM users WHERE Username = %s", (username,))
     existing_user = cursor.fetchone()
     if existing_user:
         print("Username already taken. Please choose another.")
-        register()
+        register(db, cursor)
     else:
         phone_no = input("Enter Your Phone No. : ")
-        if password(username, phone_no):
-            print("================ ACCOUNT SUCCESSFULLY REGISTERED =================")
-        else:
-            print("Passwords do not match. Try again")
-            password(username, phone_no)
-
+        if registered(phone_no) is False:
+            pass
 
 # forgot password function
-def forgot_password():
+def forgot_password(db, cursor):
+    def changed():
+        if password(username, phone_no, db, cursor) is False:
+            print("Passwords do not match. Try again")
+            changed()
+            return False
+        else:
+            print("=============== PASSWORD SUCCESSFULLY CHANGED ===============")
+            return True
+
     username = input("Enter Your Username  : ")
     phone_no = input("Enter Your Phone No. : ")
     cursor.execute("SELECT * FROM users WHERE Username = %s AND Phone_No = %s", (username, phone_no))
     user = cursor.fetchone()
-    cursor.execute("DELETE FROM users WHERE Username = %s", (username,))
     db.commit()
     if user:
-        if password(username, phone_no):
-            print("=============== PASSWORD SUCCESSFULLY CHANGED ===============")
-        else:
-            print("Passwords do not match. Try again")
-            password(username, phone_no)
+        cursor.execute("DELETE FROM users WHERE Username = %s", (username,))
+        if changed() is False:
+            pass
     else:
         print("Invalid credentials. Please try again")
-
-login_pg()
-login()
-register()
-forgot_password()
+        forgot_password(db, cursor)
