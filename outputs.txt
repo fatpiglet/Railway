@@ -1,0 +1,28 @@
+========================== WELCOME TO IRCTC ==========================
++---SELECT THE DESIRED OPTION---+
+|            1.Login            |
+|       2.Forgot Password       |
+|      3.Register Account       |
++-------------------------------+
+>
+========================= LOGIN =========================
+Enter Your Username :
+Enter Your Password :
+=============== SUCCESSFULLY LOGGED IN ===============
+Invalid credentials. Please try again.
+==================== FORGOT PASSWORD ====================
+Enter Your Username  :
+Enter Your Phone No. :
+Invalid credentials. Please try again
+Enter Password       :
+Enter Password Again :
+Passwords do not match. Try again
+=============== PASSWORD SUCCESSFULLY CHANGED ===============
+==================== REGISTRATION ====================
+Enter Your Username  :
+Username already taken. Please choose another.
+Enter Your Phone No. :
+Enter Password       :
+Enter Password Again :
+Passwords do not match. Try again
+================ ACCOUNT SUCCESSFULLY REGISTERED =================
