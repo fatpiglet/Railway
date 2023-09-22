@@ -6,3 +6,5 @@ This Project will display functions for a railway reservation and management sys
 3. Cancel a ticket.
 4. Check PNR.
 
+MySQL commands are stored in mysql.txt
+The outputs are stored in outputs.txt
