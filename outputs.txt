@@ -4,6 +4,7 @@
 |       2.Forgot Password       |
 |      3.Register Account       |
 +-------------------------------+
+Enter your desired option
 >
 ========================= LOGIN =========================
 Enter Your Username :
@@ -26,3 +27,11 @@ Enter Password       :
 Enter Password Again :
 Passwords do not match. Try again
 ================ ACCOUNT SUCCESSFULLY REGISTERED =================
++-------------MENU-------------+
+|         1. CHECK PNR         |
+|        2. BOOK TICKET        |
+|       3. CANCEL TICKET       |
+|     4. EXIT FROM PROGRAM     |
++------------------------------+
+Input your Desired option
+>

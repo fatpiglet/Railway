@@ -32,3 +32,21 @@ def loginpage():
 
 
 loginpage()
+
+def menu():
+    print("+-------------MENU-------------+")
+    print("|         1. CHECK PNR         |")
+    print("|        2. BOOK TICKET        |")
+    print("|       3. CANCEL TICKET       |")
+    print("|     4. EXIT FROM PROGRAM     |")
+    print("+------------------------------+")
+    print("Enter your desired option (1/2/3/4)")
+    choice_2 = int(input(">"))
+    if choice_2 == 1:
+        pnr()
+    elif choice_2 == 2:
+        book()
+    elif choice_2 == 3:
+        cancel()
+    elif choice_2 == 4:
+        exit()
