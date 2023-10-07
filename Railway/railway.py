@@ -1,4 +1,4 @@
-from Railway.login import *
+from login import *
 import mysql.connector
 
 # Establishing connection to mysql database
