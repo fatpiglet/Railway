@@ -1,3 +1,7 @@
 CREATE DATABASE railway_db;
 
 CREATE TABLE users(Username VARCHAR(255), Password VARCHAR(255), Phone_No VARCHAR(50));
+
+CREATE TABLE trains(Train_no. int(4), Train_name VARCHAR(255), Stations VARCHAR(255));
+
+CREATE TABLE train_0001(Station_name VARCHAR(255),  Station_code VARCHAR(10), Distance int(10));
