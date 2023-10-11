@@ -35,3 +35,7 @@ Passwords do not match. Try again
 +------------------------------+
 Enter your desired option (1/2/3/4)
 >
+=========BOOKING TICKET==========
+TO:
+FROM:
+Enter journey date (DD/MM/YYYY):
