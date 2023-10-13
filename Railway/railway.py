@@ -1,4 +1,5 @@
 from login import *
+from tkt import *
 import mysql.connector
 
 # Establishing connection to mysql database
@@ -33,6 +34,7 @@ def loginpage():
 
 loginpage()
 
+
 def menu():
     print("+-------------MENU-------------+")
     print("|         1. CHECK PNR         |")
@@ -43,9 +45,12 @@ def menu():
     print("Enter your desired option (1/2/3/4)")
     choice_2 = int(input(">"))
     if choice_2 == 1:
-        pnr()
+        pnr(db, cursor)
     elif choice_2 == 2:
-        book()
+        if not book(db, cursor):
+            menu()
+        else:
+            menu()
     elif choice_2 == 3:
         cancel()
     elif choice_2 == 4:

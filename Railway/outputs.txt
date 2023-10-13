@@ -35,7 +35,32 @@ Passwords do not match. Try again
 +------------------------------+
 Enter your desired option (1/2/3/4)
 >
-=========BOOKING TICKET==========
+
++--------------------------------------------------------------+
+|                  PLEASE ENTER STATION CODE                   |
+-------------------------------  -------------------------------
+| Station    | Station Code   |  | Station    | Station Code   |
+|------------|----------------|  |------------|----------------|
+| AGRA       | AGC            |  | KANPUR     | CNB            |
+| BHOPAL     | BPL            |  | LUCKNOW    | LJN            |
+| BHUSAWAL   | BSL            |  | MADGAON    | MAQ            |
+| CHENNAI    | MS             |  | MANGALORE  | MAJN           |
+| COIMBATORE | CBE            |  | NAGPUR     | NGP            |
+| ERNAKULAM  | ERS            |  | NEW DELHI  | NDLS           |
+| JHANSI     | JHS            |  | SHORANUR   | SRR            |
+| KALYAN     | KYN            |  | VIJAYAWADA | BZA            |
+                                 | WARANGAL   | WL             |
+-------------------------------  -------------------------------
+
+======================== BOOKING TICKET ========================
+
 TO:
 FROM:
 Enter journey date (DD/MM/YYYY):
+Train                      Train no.    Available Seats    Fare
+-----------------------  -----------  -----------------  ------
+ERNAKULAM-DELHI EXPRESS            1                100    NULL
+LUCKNOW-SHORANUR                   2                 50    NULL
+
+
+
