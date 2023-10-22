@@ -30,9 +30,9 @@ def loginpage():
         print("==================== REGISTRATION ====================")
         register(db, cursor)
         loginpage()
-
-
-loginpage()
+    else:
+        print('INVALID OPTION PLEASE CHOOSE AGAIN')
+        loginpage()
 
 
 def menu():
@@ -55,3 +55,7 @@ def menu():
         cancel()
     elif choice_2 == 4:
         exit()
+
+
+loginpage()
+menu()

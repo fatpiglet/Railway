@@ -5,3 +5,40 @@
 | pam      | pam123   | 1234567890 |
 | ram      | ram789   | 1234567890 |
 +----------+----------+------------+
+
++-------------------------+----------+-----------------+-----------------+-------------------------------------------+------+------------+
+| Train_name              | Train_no | Seats_available | Days_running    | Stations                                  | Fare | Train      |
++-------------------------+----------+-----------------+-----------------+-------------------------------------------+------+------------+
+| ERNAKULAM-DELHI EXPRESS |        1 |             100 | Mon,Wed,Fri,Sun | ERS-SRR-MAJN-MAQ-KYN-BSL-BPL-JHS-SGC-NDLS | NULL | train_0001 |
+| LUCKNOW-SHORANUR        |        2 |              50 | Tue,Thu,Sat,Sun | LJN-CNB-JHS-BPL-NGP-WL-BZA-MS-CBE-SRR     | NULL | train_0002 |
++-------------------------+----------+-----------------+-----------------+-------------------------------------------+------+------------+
+
++--------------+--------------+----------+
+| Station_name | Station_code | Distance |
++--------------+--------------+----------+
+| ERNAKULAM    | ERS          |        0 |
+| SHORANUR     | SRR          |      110 |
+| MANGALORE    | MAJN         |      450 |
+| MADGAON      | MAQ          |      785 |
+| KALYAN       | KYN          |     1410 |
+| BHUSAWAL     | BSL          |     1825 |
+| BHOPAL       | BPL          |     2220 |
+| JHANSI       | JHS          |     2520 |
+| AGRA         | AGC          |     2780 |
+| NEW DELHI    | NDLS         |     3000 |
++--------------+--------------+----------+
+
++--------------+--------------+----------+
+| Station_name | Station_code | Distance |
++--------------+--------------+----------+
+| LUCKNOW      | LJN          |        0 |
+| KANPUR       | CNB          |       90 |
+| JHANSI       | JHS          |      320 |
+| BHOPAL       | BPL          |      650 |
+| NAGPUR       | NGP          |     1000 |
+| WARANGAL     | WL           |     1460 |
+| VIJAYAWADA   | BZA          |     1710 |
+| CHENNAI      | MS           |     2165 |
+| COIMBATORE   | CBE          |     2670 |
+| SHORANUR     | SRR          |     2770 |
++--------------+--------------+----------+
