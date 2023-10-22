@@ -47,13 +47,12 @@ def menu():
     if choice_2 == 1:
         pnr(db, cursor)
     elif choice_2 == 2:
-        if not book(db, cursor):
-            menu()
-        else:
+        if book(db, cursor):
             menu()
     elif choice_2 == 3:
         cancel()
     elif choice_2 == 4:
+        print('Exiting from Program!!!')
         exit()
 
 
