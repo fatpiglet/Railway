@@ -17,6 +17,8 @@ import calendar
 import datetime
 from tabulate import tabulate
 
+total_fare = 0
+
 
 def book(db, cursor):
     data1 = [['AGRA', 'AGC'], ['BHOPAL', 'BPL'], ['BHUSAWAL', 'BSL'], ['CHENNAI', 'MS'], ['COIMBATORE', 'CBE'],
@@ -87,6 +89,7 @@ def book(db, cursor):
         cursor.execute('SELECT Train_name FROM Trains WHERE Train_no = %s', (train,))
         train2 = cursor.fetchone()
         train2 = ''.join(train2)  # gives train name
+        global total_fare
         f = round(fare(train1))
         total_fare = f * passenger_no  # gives total fare
 
@@ -121,3 +124,45 @@ def book(db, cursor):
     print()
     ins_passenger()
     db.commit()
+
+
+def payment():
+    print('Choose payment method: ')
+    print('+-----------------------+')  # displays payment methods
+    print('|         1.UPI         |')
+    print('|     2.CREDIT CARD     |')
+    print('|    3.CANCEL PAYMENT   |')
+    print('+-----------------------+')
+    opt = int(input('>'))  # input payment method
+    print()
+    if opt == 1:
+        print('============UPI===========')
+
+        def check():  # user to check whether upi is correct
+            upi = input('Enter full UPI id: ')
+            print('Check whether UPI id is correct')
+            print()
+            print(upi)
+            print()
+            upi_check = input('Enter Y if UPI is correct')
+            print()
+            if upi_check.upper() == 'Y':
+                return True
+            else:
+                check()
+                return True
+        if check():
+            print()
+            print('deductible amount is ', total_fare)
+            print()
+            confirm_pay = input('Confirm payment (Y/N)')
+            print()
+            if confirm_pay.upper() == 'Y':
+                print('Rs.', total_fare, 'deducted from your account')
+            else:
+                payment()
+    elif opt == 2:
+        print()
+
+
+
