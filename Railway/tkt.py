@@ -64,7 +64,7 @@ def book(db, cursor):
     cursor.execute(query2, parameter2)
     row = cursor.fetchall()  # returns all the trains on given date and btw stations
     if not row:
-        print("NO AVAILABLE TRAINS")
+        print("NO AVAILABLE TRAINS!!!")
         return True
     else:
         header = ["Train", "Train no.", "Available Seats", "Fare"]
@@ -98,17 +98,20 @@ def book(db, cursor):
                 (passenger_name, passenger_age, passenger_gender, jdate, dep, arr, train, train2, f), ]
             passenger_details1 += [[passenger_name, passenger_age, passenger_gender]]
             passenger_no -= 1
+        print()
         header1 = ['Train No.', 'Train Name', 'From', 'To', 'Total Fare']
         main_details = [[train, train2, dep, arr, total_fare]]
         print(tabulate(main_details, headers=header1, tablefmt='github'), end='\n')
         header2 = ['Passenger Name', 'Passenger Age', 'Passenger Gender']
+        print()
         print(tabulate(passenger_details1, headers=header2, tablefmt='github'), end='\n')
+        print()
         confirm = input('Confirm ticket (Y/N): ')
         print()
         if confirm.upper() == 'Y':
             query3 = ("INSERT INTO tickets (Name, Age, Gender, Journey_date, Departure, Arrival, Train_no, Train_name, "
                       "Fare ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
-            cursor.executemany(query3, passenger_details)  # inserts into tickets table
+            cursor.executemany(query3, passenger_details)  # inserts multiple records into tickets table
             print()
             print(cursor.rowcount, "passenger's tickets booked")
         else:

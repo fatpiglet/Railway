@@ -56,11 +56,33 @@ Enter your desired option (1/2/3/4)
 
 TO:
 FROM:
-Enter journey date (DD/MM/YYYY):
+Enter journey date (YYYY-MM-DD):
+
 Train                      Train no.    Available Seats    Fare
 -----------------------  -----------  -----------------  ------
 ERNAKULAM-DELHI EXPRESS            1                100    NULL
 LUCKNOW-SHORANUR                   2                 50    NULL
+NO AVAILABLE TRAINS!!!
+
+Enter train no:
+Enter number of Passengers:
+Enter Passenger Name:
+Enter Passenger Age:
+Enter Passenger Gender(M/F/O):
+
+|   Train No. | Train Name       | From     | To     |   Total Fare |
+|-------------|------------------|----------|--------|--------------|
+|           2 | LUCKNOW-SHORANUR | SHORANUR | BHOPAL |         2036 |
+
+| Passenger Name   |   Passenger Age | Passenger Gender   |
+|------------------|-----------------|--------------------|
+|                  |                 |                    |
+
+Confirm ticket (Y/N):
+
+
+  passenger's tickets booked
+Enter passenger details again!!!
 
 
 
