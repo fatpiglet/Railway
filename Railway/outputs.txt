@@ -81,8 +81,31 @@ Enter Passenger Gender(M/F/O):
 Confirm ticket (Y/N):
 
 
-  passenger's tickets booked
 Enter passenger details again!!!
 
+Choose payment method:
++-----------------------+
+|         1.UPI         |
+|     2.CREDIT CARD     |
+|    3.CANCEL PAYMENT   |
++-----------------------+
+>
+
+============UPI===========
+Enter full UPI id: 12
+Check whether UPI id is correct
+12
+Enter Y if UPI is correct
+
+
+
+===========CARD===========
+Enter card no: 1234567890123456
+Enter cardholder's name: Mario
+Enter CVV number: 123
+Enter Expiry date (MM/DD): 00/00
+deductible amount is  1018
+Confirm payment (Y/N)
+Rs. 1018 deducted from your account
 
 

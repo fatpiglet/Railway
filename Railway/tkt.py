@@ -90,7 +90,7 @@ def book(db, cursor):
         while passenger_no > 0:
             passenger_name = input('Enter Passenger Name: ')
             passenger_age = int(input('Enter Passenger Age: '))
-            passenger_gender = input('Enter Passenger Gender(M/F/O): ')
+            passenger_gender = input('Enter Passenger Gender(M/F): ')
             passenger_details += [
                 (passenger_name, passenger_age, passenger_gender, jdate, dep, arr, train, train2, f), ]
             passenger_details1 += [[passenger_name, passenger_age, passenger_gender]]
@@ -142,11 +142,8 @@ def payment():
         def check_upi():  # user to check whether upi is correct
             upi = input('Enter full UPI id: ')
             print('Check whether UPI id is correct')
-            print()
             print(upi)
-            print()
             upi_check = input('Enter Y if UPI is correct')
-            print()
             if upi_check.upper() == 'Y':
                 return True
             else:
@@ -154,11 +151,8 @@ def payment():
                 return True
 
         if check_upi():
-            print()
             print('deductible amount is ', total_fare)
-            print()
             confirm_pay = input('Confirm payment (Y/N)')
-            print()
             if confirm_pay.upper() == 'Y':
                 print('Rs.', total_fare, 'deducted from your account')
             else:
@@ -183,7 +177,7 @@ def payment():
                 return True
 
         def holder_name():
-            name = input('Enter Card holders name: ')
+            name = input("Enter Cardholder's name: ")
             if len(name) != 0:
                 return True
             else:
