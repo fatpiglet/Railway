@@ -65,12 +65,6 @@ def book(db, cursor):
     parameter2 = (da1, d1, a1)
     cursor.execute(query2, parameter2)
     row = cursor.fetchall()  # returns all the trains on given date and btw stations
-    if not row:
-        print("NO AVAILABLE TRAINS!!!")
-        return True
-    else:
-        header = ["Train", "Train no.", "Available Seats", "Fare"]
-        print(tabulate(row, headers=header))
 
     def ins_passenger():  # function for inserting the passenger details into table
         train = int(input('Enter train no: '))  # contains train no
@@ -116,13 +110,20 @@ def book(db, cursor):
                       "Fare ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
             cursor.executemany(query3, passenger_details)  # inserts multiple records into tickets table
             print()
-            print(cursor.rowcount, "passenger's tickets booked")
+            return True
         else:
             print('Enter passenger details again!!!')
-            ins_passenger()
-
+            book(db,cursor)
     print()
-    ins_passenger()
+    if not row:
+        print("NO AVAILABLE TRAINS!!!")
+        print()
+    else:
+        header = ["Train", "Train no.", "Available Seats", "Fare"]
+        print(tabulate(row, headers=header))
+        if ins_passenger():
+            return True
+
     db.commit()
 
 
@@ -138,7 +139,7 @@ def payment():
     if opt == 1:
         print('============UPI===========')
 
-        def check():  # user to check whether upi is correct
+        def check_upi():  # user to check whether upi is correct
             upi = input('Enter full UPI id: ')
             print('Check whether UPI id is correct')
             print()
@@ -149,9 +150,10 @@ def payment():
             if upi_check.upper() == 'Y':
                 return True
             else:
-                check()
+                check_upi()
                 return True
-        if check():
+
+        if check_upi():
             print()
             print('deductible amount is ', total_fare)
             print()
@@ -162,7 +164,51 @@ def payment():
             else:
                 payment()
     elif opt == 2:
-        print()
+        def card_no():
+            card_number = input('Enter card no: ')
+            if len(card_number) == 16:
+                return True
+            else:
+                print('Invalid card number')
+                card_no()
+                return True
 
+        def cvv():
+            cvv_no = input('Enter CVV number: ')
+            if len(cvv_no) == 3:
+                return True
+            else:
+                print('Invalid CVV number')
+                cvv()
+                return True
+
+        def holder_name():
+            name = input('Enter Card holders name: ')
+            if len(name) != 0:
+                return True
+            else:
+                print('Invalid Name')
+                holder_name()
+                return True
+
+        print('===========CARD===========')
+
+        def check_card():  # user to check whether card is correct
+            if card_no() and holder_name() and cvv():
+                input('Enter Expiry date (MM/DD): ')
+                return True
+            else:
+                check_card()
+                return True
+
+        if check_card():
+            print('deductible amount is ', total_fare)
+            confirm_pay = input('Confirm payment (Y/N)')
+            if confirm_pay.upper() == 'Y':
+                print('Rs.', total_fare, 'deducted from your account')
+            else:
+                payment()
+    elif opt == 3:
+        print('Redirecting to main menu!!!')
 
 

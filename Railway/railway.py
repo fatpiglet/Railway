@@ -47,8 +47,8 @@ def menu():
     if choice_2 == 1:
         pnr(db, cursor)
     elif choice_2 == 2:
-        book(db,cursor)
-        payment()
+        if book(db, cursor):
+            payment()
         menu()
     elif choice_2 == 3:
         cancel()
