@@ -16,6 +16,7 @@ cursor = db.cursor(buffered=True)
 import calendar
 import datetime
 from tabulate import tabulate
+from random import *
 
 total_fare = 0
 
@@ -87,15 +88,28 @@ def book(db, cursor):
         f = round(fare(train1))
         total_fare = f * passenger_no  # gives total fare
 
+        def generate_pnr():
+            pnr1 = ''
+            for i in range(6):
+                pnr1 += ''.join(choice('0123456789'))
+            cursor.execute("SELECT PNR FROM tickets WHERE PNR = %s", (pnr1,))
+            if cursor.rowcount > 0:
+                generate_pnr()
+            else:
+                return pnr1
+
+        pnr2 = generate_pnr()
+
         while passenger_no > 0:
             passenger_name = input('Enter Passenger Name: ')
             passenger_age = int(input('Enter Passenger Age: '))
             passenger_gender = input('Enter Passenger Gender(M/F): ')
             passenger_details += [
-                (passenger_name, passenger_age, passenger_gender, jdate, dep, arr, train, train2, f), ]
+                (pnr2, passenger_name, passenger_age, passenger_gender, jdate, dep, arr, train, train2, f), ]
             passenger_details1 += [[passenger_name, passenger_age, passenger_gender]]
             passenger_no -= 1
         print()
+        print('YOUR PNR is :', pnr2)
         header1 = ['Train No.', 'Train Name', 'From', 'To', 'Total Fare']
         main_details = [[train, train2, dep, arr, total_fare]]
         print(tabulate(main_details, headers=header1, tablefmt='github'), end='\n')
@@ -106,14 +120,18 @@ def book(db, cursor):
         confirm = input('Confirm ticket (Y/N): ')
         print()
         if confirm.upper() == 'Y':
-            query3 = ("INSERT INTO tickets (Name, Age, Gender, Journey_date, Departure, Arrival, Train_no, Train_name, "
-                      "Fare ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
+            query3 = (
+                "INSERT INTO tickets (PNR, Name, Age, Gender, Journey_date, Departure, Arrival, Train_no, Train_name, "
+                "Fare ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
             cursor.executemany(query3, passenger_details)  # inserts multiple records into tickets table
             print()
+            db.commit()
             return True
         else:
             print('Enter passenger details again!!!')
-            book(db,cursor)
+            book(db, cursor)
+            db.commit()
+
     print()
     if not row:
         print("NO AVAILABLE TRAINS!!!")
@@ -123,8 +141,6 @@ def book(db, cursor):
         print(tabulate(row, headers=header))
         if ins_passenger():
             return True
-
-    db.commit()
 
 
 def payment():
@@ -206,3 +222,37 @@ def payment():
         print('Redirecting to main menu!!!')
 
 
+def cancel(db, cursor):
+    print('=========TICKET CANCELLATION=========')
+    pnr3 = input('Enter PNR number: ')
+    cursor.execute('SELECT * FROM tickets WHERE PNR = %s', (pnr3,))
+    row = cursor.fetchall()
+    if not row:
+        print('No available tickets with the given pnr')
+    else:
+        header = ['PNR', 'Name', 'Age', 'Gender', 'Journey_date', 'Departure', 'Arrival', 'Train no.', 'Train name',
+                  'Fare']
+        print(tabulate(row, headers=header))
+    tkt_cancel = int(input('Enter number of tickets you want to cancel: '))
+    for i in range(tkt_cancel):
+        passenger_name = input('Enter passenger name: ')
+        confirm = input('Confirm cancellation (Y/N): ')
+        if confirm.upper() == 'Y':
+            cursor.execute('DELETE FROM tickets WHERE PNR = %s AND Name = %s', (pnr3, passenger_name))
+            print(passenger_name, "'s ticket has been cancelled", sep='')
+            db.commit()
+        else:
+            return False
+
+
+def pnr(cursor):
+    print('==============CHECK PNR==============')
+    pnr4 = input('Enter PNR: ')
+    cursor.execute('SELECT * FROM tickets WHERE PNR = %s', (pnr4,))
+    row = cursor.fetchall()
+    if not row:
+        print('No available tickets with the given pnr')
+    else:
+        header = ['PNR', 'Name', 'Age', 'Gender', 'Journey_date', 'Departure', 'Arrival', 'Train no.', 'Train name',
+                  'Fare']
+        print(tabulate(row, headers=header))

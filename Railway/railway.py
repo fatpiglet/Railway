@@ -45,13 +45,17 @@ def menu():
     print("Enter your desired option (1/2/3/4)")
     choice_2 = int(input(">"))
     if choice_2 == 1:
-        pnr(db, cursor)
+        pnr(cursor)
+        menu()
     elif choice_2 == 2:
         if book(db, cursor):
             payment()
         menu()
     elif choice_2 == 3:
-        cancel()
+        if cancel(db, cursor):
+            menu()
+        else:
+            menu()
     elif choice_2 == 4:
         print('Exiting from Program!!!')
         exit()
