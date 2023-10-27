@@ -131,6 +131,7 @@ def book(db, cursor):
             print('Enter passenger details again!!!')
             book(db, cursor)
             db.commit()
+            return True
 
     print()
     if not row:
