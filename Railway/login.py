@@ -18,7 +18,7 @@ def login_pg():
     print("|       2.Forgot Password       |")
     print("|      3.Register Account       |")
     print("+-------------------------------+")
-    print("Enter your desired option (1/2/3/4)")
+    print("Enter your desired option (1/2/3)")
     choice_1 = int(input(">"))
     return choice_1
 
